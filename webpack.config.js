@@ -15,8 +15,8 @@ module.exports = (env, argv) => {
             style: './src/style.ts',
         },
         mode: isProduction ? 'production' : 'development',
-        devtool: !isProduction ? 'cheap-module-source-map' : false, // Best for dev
-        cache: !isProduction, // Use cache for faster development builds
+        devtool: !isProduction ? 'cheap-module-source-map' : false,
+        cache: !isProduction,
         module: {
             rules: [
                 {
@@ -45,25 +45,16 @@ module.exports = (env, argv) => {
                         'sass-loader',
                     ],
                 },
-                {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env'],
-                        },
-                    },
-                },
             ],
         },
         resolve: {
-            extensions: ['.tsx', '.ts', '.js'],
+            extensions: ['.ts', '.js'],
         },
         output: {
             filename: isProduction ? '[name].[contenthash].bundle.js' : '[name].bundle.js',
             path: path.resolve(__dirname, 'public/dist'),
-            clean: true, // Automatically clean the output directory
+            clean: true,
+            pathinfo: false
         },
         optimization: {
             minimize: isProduction,
@@ -97,7 +88,7 @@ module.exports = (env, argv) => {
             new MiniCssExtractPlugin({
                 filename: isProduction ? '[name].[contenthash].css' : '[name].css',
             }),
-            new CleanWebpackPlugin(), // Ensures clean builds
+            new CleanWebpackPlugin(),
         ],
         stats: {
             warnings: false,
