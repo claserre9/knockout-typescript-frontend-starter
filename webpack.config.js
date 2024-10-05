@@ -61,10 +61,19 @@ module.exports = (env, argv) => {
             minimizer: [
                 new CssMinimizerPlugin(),
                 new TerserPlugin({
-                    minify: TerserPlugin.uglifyJsMinify,
                     terserOptions: {
-                        compress: true,
+                        compress: {
+                            drop_console: true,
+                            drop_debugger: true,
+                            passes: 2,
+                            pure_funcs: ['console.info', 'console.debug'],
+                        },
+                        mangle: true,
+                        output: {
+                            comments: false,
+                        },
                     },
+                    extractComments: false,
                     parallel: true,
                 }),
             ],
@@ -83,7 +92,17 @@ module.exports = (env, argv) => {
             new HtmlWebpackPlugin({
                 template: './src/index.html',
                 filename: '../index.html',
-                minify: isProduction ? { collapseWhitespace: true, removeComments: true } : false,
+                minify: isProduction ? {
+                    collapseWhitespace: true,
+                    removeComments: true,
+                    removeRedundantAttributes: true,
+                    useShortDoctype: true,
+                    removeEmptyAttributes: true,
+                    removeStyleLinkTypeAttributes: true,
+                    keepClosingSlash: true,
+                    minifyJS: true,
+                    minifyCSS: true,
+                } : false,
             }),
             new MiniCssExtractPlugin({
                 filename: isProduction ? '[name].[contenthash].css' : '[name].css',

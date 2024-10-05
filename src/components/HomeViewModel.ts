@@ -29,9 +29,9 @@ export default class HomeViewModel extends BaseViewModel{
       <div class="hidden flex-none lg:block">
         <ul class="menu menu-horizontal">
           <!-- Navbar menu content here -->
-          <li><a>Link 1</a></li>
-          <li><a>Link 2</a></li>
-          <li><a>Link 3</a></li>
+          <li><a href="https://google.com">Link 1</a></li>
+          <li><a href="https://yahoo.ca">Link 2</a></li>
+          <li><a href="https://facebook.com">Link 3</a></li>
         </ul>
       </div>
     </div>
@@ -44,9 +44,9 @@ export default class HomeViewModel extends BaseViewModel{
     <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
     <ul class="menu bg-base-200 min-h-full w-80 p-4">
       <!-- Sidebar content here -->
-      <li><a>Link 1</a></li>
-      <li><a>Link 2</a></li>
-      <li><a>Link 3</a></li>
+      <li><a href="https://google.com">Link 1</a></li>
+      <li><a href="https://yahoo.ca">Link 2</a></li>
+      <li><a href="https://facebook.com">Link 3</a></li>
     </ul>
   </div>
 </div>
